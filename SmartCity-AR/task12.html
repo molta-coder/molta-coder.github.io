@@ -18,7 +18,8 @@
           var fullbutton = document.querySelector("#fullscreen");
           var Video_0 = document.querySelector("#Video_Asset_0");
 		  var Video_1 = document.querySelector("#Video_Asset_1");
-          var button = document.querySelector("#mutebutton");
+          var buttonHiro = document.querySelector("#mutebuttonHiro");
+		  var buttonKanji = document.querySelector("#mutebuttonKanji");
           buttonHiro.hidden = true;
 		  buttonKanji.hidden = true;
           Video_0.pause();
@@ -26,7 +27,7 @@
 
           markerHiro.addEventListener("markerFound", function (evt) {
             markerFound = 1;
-            button.hidden = false;
+            buttonHiro.hidden = false;
             //Video_0.play();  // if you want the video 
             // to start immediently on marker detection, uncomment this
           });
@@ -34,12 +35,12 @@
           markerHiro.addEventListener("markerLost", function (evt) {
             markerFound = 0;
             Video_0.pause();
-            button.hidden = true;
+            buttonHiro.hidden = true;
           });
 		  
 		   markerKanji.addEventListener("markerFound", function (evt) {
             markerFound = 1;
-            button.hidden = false;
+            buttonKanji.hidden = false;
             //Video_1.play();  // if you want the video 
             // to start immediently on marker detection, uncomment this
           });
@@ -47,7 +48,7 @@
 		  markerKanji.addEventListener("markerLost", function (evt) {
             markerFound = 0;
             Video_1.pause();
-            button.hidden = true;
+            buttonKanji.hidden = true;
           });
 
           // button for video play/pause
@@ -122,7 +123,8 @@
 </head>
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
   <div style='position: absolute; bottom: 10px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-    <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
+    <button id="mutebuttonHiro" style='position: absolute; bottom: 10px' hidden>Play</button>
+	<button id="mutebuttonKanji" style='position: absolute; bottom: 10px' hidden>Play</button>
   </div>
   <div style='position: absolute; bottom: 5px; left: 30px; width:100%; text-align: right; z-index: 1;'>
     <input type="image" id="fullscreen" src="assets/fullscreen.png" style='position: absolute; bottom: 0px; right: 35px;'></input>
