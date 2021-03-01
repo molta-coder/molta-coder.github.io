@@ -13,46 +13,46 @@
         init: function ()
         {
           var elem = document.documentElement;
-          var markerHiro = document.querySelector("#hiro");
-		  var markerKanji = document.querySelector("#markerKanji");
+          var marker = document.querySelector("#marker");
+		  var marker_2 = document.querySelector("#marker_2");
           var fullbutton = document.querySelector("#fullscreen");
           var Video_0 = document.querySelector("#Video_Asset_0");
 		  var Video_1 = document.querySelector("#Video_Asset_1");
-          var buttonHiro = document.querySelector("#mutebuttonHiro");
-		  var buttonKanji = document.querySelector("#mutebuttonKanji");
-          buttonHiro.hidden = true;
-		  buttonKanji.hidden = true;
+          var button = document.querySelector("#mutebutton");
+		  var button_2 = document.querySelector("#mutebutton_2");
+          button.hidden = true;
+		  button_2.hidden = true;
           Video_0.pause();
 		  Video_1.pause();
 
-          markerHiro.addEventListener("markerFound", function (evt) {
+          marker.addEventListener("markerFound", function (evt) {
             markerFound = 1;
-            buttonHiro.hidden = false;
-            Video_0.play();  // if you want the video 
+            button.hidden = false;
+            //Video_0.play();  // if you want the video 
             // to start immediently on marker detection, uncomment this
           });
 
-          markerHiro.addEventListener("markerLost", function (evt) {
+          marker.addEventListener("markerLost", function (evt) {
             markerFound = 0;
             Video_0.pause();
-            buttonHiro.hidden = true;
+            button.hidden = true;
           });
 		  
-		   markerKanji.addEventListener("markerFound", function (evt) {
+		   marker_2.addEventListener("markerFound", function (evt) {
             markerFound = 1;
-            buttonKanji.hidden = false;
-            Video_1.play();  // if you want the video 
+            button_2.hidden = false;
+            //Video_1.play();  // if you want the video 
             // to start immediently on marker detection, uncomment this
           });
 		  
-		  markerKanji.addEventListener("markerLost", function (evt) {
+		  marker_2.addEventListener("markerLost", function (evt) {
             markerFound = 0;
             Video_1.pause();
-            buttonKanji.hidden = true;
+            button_2.hidden = true;
           });
 
           // button for video play/pause
-          buttonHiro.addEventListener("click", function(evt){
+          button.addEventListener("click", function(evt){
             console.log("button clicked")
             if(Video_0.muted==true){
               button.innerHTML="Pause";
@@ -66,7 +66,7 @@
           });
 		  
 		    // button for video play/pause
-          buttonKanji.addEventListener("click", function(evt){
+          button_2.addEventListener("click", function(evt){
             console.log("button clicked")
             if(Video_1.muted==true){
               button.innerHTML="Pause";
@@ -123,8 +123,10 @@
 </head>
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
   <div style='position: absolute; bottom: 10px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-    <button id="mutebuttonHiro" style='position: absolute; bottom: 10px' hidden>Play</button>
-	<button id="mutebuttonKanji" style='position: absolute; bottom: 10px' hidden>Play</button>
+    <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
+  </div>
+   <div style='position: absolute; bottom: 10px; right: 30px; width:100%; text-align: center; z-index: 1;'>
+    <button id="mutebutton_2" style='position: absolute; bottom: 10px' hidden>Play</button>
   </div>
   <div style='position: absolute; bottom: 5px; left: 30px; width:100%; text-align: right; z-index: 1;'>
     <input type="image" id="fullscreen" src="assets/fullscreen.png" style='position: absolute; bottom: 0px; right: 35px;'></input>
@@ -133,13 +135,15 @@
     <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
     <a-assets>
       <video id="Video_Asset_0" autoplay="false" loop crossorigin="anonymous" src="assets/t11video.mp4" webkit-playsinline playsinline controls muted></video>
-	  <video id="Video_Asset_1" autoplay="false" loop crossorigin="anonymous" src="assets/video.mp4" webkit-playsinline playsinline controls muted></video>
-    </a-assets>
-    <a-marker id="markerHiro" preset="hiro" emitevents="true" button>
+	</a-assets>
+	<a-assets>
+      <video id="Video_Asset_1" autoplay="false" loop crossorigin="anonymous" src="assets/video.mp4" webkit-playsinline playsinline controls muted></video>
+	</a-assets>
+    <a-marker id="marker" preset="hiro" emitevents="true" button>
       <a-video src="#Video_Asset_0" id="Video_0" class="intersectable" width="5" height="5" rotation="-90 0 0" position="0 0 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
     </a-marker>
 	
-	<a-marker id="markerKanji" preset="hiro" emitevents="true" button>
+	<a-marker id="marker_2" preset="kanji" emitevents="true" button>
       <a-video src="#Video_Asset_1" id="Video_1" class="intersectable" width="5" height="5" rotation="-90 0 0" position="0 0 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
     </a-marker>
     <a-entity camera></a-entity>
